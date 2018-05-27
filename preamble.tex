@@ -1,0 +1,103 @@
+\documentclass[11pt,a4paper]{scrartcl}
+% \documentclass[border=0pt]{standalone}
+\pagestyle{empty}
+\usepackage{tikz}
+\usetikzlibrary{calc,math,positioning,arrows}
+\usepackage{sfmath}
+\usepackage{ifthen}
+\usepackage{xspace}
+\usepackage{xcolor}
+\pgfrealjobname{master}
+\usepackage[width=9.2cm, height=8.7cm,noheadfoot]{geometry}
+
+%% Set up color palettes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Color palette GreenOrange_6 from
+% https://jiffyclub.github.io/palettable/tableau/
+\definecolor{pgreen}     {RGB}{50,162,81}
+\definecolor{porange}    {RGB}{255,127,15}
+\definecolor{pblue}      {RGB}{60,183,204}
+\definecolor{pyellow}    {RGB}{255,217,74}
+\definecolor{pteal}      {RGB}{57,115,124}
+\definecolor{pauburn}    {RGB}{184,90,13}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\iffirstpair}[2]{#1}
+\newcommand{\ifsecondpair}[2]{#1}
+\newcommand{\ifthirdpair}[2]{#1}
+
+\newcommand{\ifshownodelabels}[2]{#1}
+\newcommand{\ifshoweventlabels}[2]{#1}
+\newcommand{\ifshowalleles}[2]{#1}
+\newcommand{\ifshowallelelabels}[2]{#1}
+\newcommand{\ifshowislands}[2]{#1}
+\newcommand{\ifshowrootisland}[2]{#1}
+\newcommand{\ifshoweventisland}[2]{#1}
+\newcommand{\ifshowtipisland}[2]{#1}
+\newcommand{\ifshowtimearrow}[2]{#1}
+\newcommand{\ifshowpopsizelabels}[2]{#1}
+\newcommand{\ifshoweventlines}[2]{#1}
+\newcommand{\ifshowrootlabels}[2]{#1}
+\newcommand{\ifshowleaflabels}[2]{#1}
+
+\newcommand{\leafLabelOffset}{0mm}
+\newcommand{\alleleLeafLabelOffset}{0mm}
+
+% 1.6 deep
+% 5.6 shallow
+% 3.6 middle
+\pgfmathsetmacro\shallowdepth{4.5}
+\pgfmathsetmacro\middledepth{2.2}
+\pgfmathsetmacro\deepdepth{1.4}
+\pgfmathsetmacro\firstdepth{\middledepth}
+\pgfmathsetmacro\seconddepth{\deepdepth}
+\pgfmathsetmacro\thirddepth{\shallowdepth}
+\pgfmathsetmacro\stemlength{1.0}
+\pgfmathsetmacro\maximumdepth{\deepdepth}
+
+\newcommand{\eventLineColor}{black!60}
+\newcommand{\timeLineColor}{black!60}
+
+\newcommand{\eventLabelColor}{black!70}
+\newcommand{\timeLabelColor}{black!70}
+\newcommand{\nodeLabelColor}{black!70}
+\newcommand{\popSizeLabelColor}{black!70}
+\newcommand{\alleleLabelColor}{black!70}
+\newcommand{\alleleBracketColor}{black!70}
+\newcommand{\alleleBracketLabelColor}{black!70}
+
+\newcommand{\popLineageColor}{black!30}
+\newcommand{\popLineageDefaultWidth}{16pt}
+
+\newcommand{\firstPopLineageRootWidth}{\popLineageDefaultWidth}
+\newcommand{\firstPopLineageLeafWidth}{\popLineageDefaultWidth}
+\newcommand{\secondPopLineageRootWidth}{\popLineageDefaultWidth}
+\newcommand{\secondPopLineageLeafWidth}{\popLineageDefaultWidth}
+\newcommand{\thirdPopLineageRootWidth}{\popLineageDefaultWidth}
+\newcommand{\thirdPopLineageLeafWidth}{\popLineageDefaultWidth}
+
+\newcommand{\eventLineWidth}{1pt}
+\newcommand{\timeLineWidth}{1pt}
+
+\newcommand{\rootIslandPath}{islands/islands-1.pdf}
+\newcommand{\eventIslandPath}{islands/islands-2.pdf}
+\newcommand{\tipIslandPath}{islands/islands-2.pdf}
+
+\newcommand{\firstRootLabelColor}{5-teal}
+\newcommand{\secondRootLabelColor}{5-teal}
+\newcommand{\thirdRootLabelColor}{5-teal}
+
+\newcommand{\firstTipTLabelColor}{5-teal}
+\newcommand{\firstTipBLabelColor}{6-auburn}
+\newcommand{\secondTipTLabelColor}{5-teal}
+\newcommand{\secondTipBLabelColor}{6-auburn}
+\newcommand{\thirdTipTLabelColor}{5-teal}
+\newcommand{\thirdTipBLabelColor}{6-auburn}
+
+\newcommand{\getEventLabel}[1]{%
+    \ifthenelse{\equal{#1}{\shallowdepth}}%
+        {$\tau_{\scriptscriptstyle 2}$}%
+        {\ifthenelse{\equal{#1}{\deepdepth}}%
+            {$\divtime{}_{\scriptscriptstyle 3}$}%
+            {$\divtime{}_{\scriptscriptstyle 1}$}}%
+}
