@@ -1,0 +1,111 @@
+%% This is a tikz file
+
+\tikzset{node lower left/.style={font=\small,anchor=north east,text height=0.240cm,text depth=0.068cm,inner sep=0.03cm},
+leaf/.style={font=\small,anchor=west,text height=0.240cm,text depth=0.068cm},
+node upper left/.style={font=\small,anchor=south east,text height=0.240cm,text depth=0.068cm,inner sep=0.03cm},
+bracket label/.style={font=\small,anchor=west,text height=0.240cm,text depth=0.068cm,inner sep=0.1cm},
+node upper right/.style={font=\small,anchor=south west,text height=0.240cm,text depth=0.068cm,inner sep=0.03cm},
+node right/.style={font=\small,anchor=west,text height=0.240cm,text depth=0.068cm,inner sep=0.03cm},
+branch/.style={font=\tiny,text height=0.144cm,text depth=0.041cm,inner sep=0.025cm},
+root/.style={font=\small,anchor=east,text height=0.240cm,text depth=0.068cm},
+node lower right/.style={font=\small,anchor=north west,text height=0.240cm,text depth=0.068cm,inner sep=0.03cm}}
+
+\begin{tikzpicture}[ultra thick,inner sep=0.1cm]
+
+%% Coordinates of nodes.
+\coordinate (c3root) at (\maximumdepth-\stemlength,0.500);
+\coordinate (c3int) at (\thirddepth,0.500);
+\coordinate (c3inttop) at (\thirddepth,1.000);
+\coordinate (c3intbottom) at (\thirddepth,0.000);
+\coordinate (c3tip) at (5.600,0.500);
+\coordinate (c3tiptop) at (5.600,1.000);
+\coordinate (c3tipbottom) at (5.600,0.000);
+
+%% horizontal lines
+\ifshowpopsizelabels{
+    \draw[line width=\thirdPopLineageRootWidth, \popLineageColor] (c3root) -- (c3int) node[midway, text=\popSizeLabelColor] {\epopsize[\rootpopindex{}]{}};
+}{
+    \draw[line width=\thirdPopLineageRootWidth, \popLineageColor] (c3root) -- (c3int);
+}
+\ifthirdpair{
+    \ifshowpopsizelabels{
+        \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3inttop) -- (c3tiptop) node[midway, text=\popSizeLabelColor] {\small\epopsize[\descendantpopindex{1}]{}};
+        \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3intbottom) -- (c3tipbottom) node[midway, text=\popSizeLabelColor] {\small\epopsize[\descendantpopindex{2}]{}};
+    }{
+        \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3inttop) -- (c3tiptop);
+        \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3intbottom) -- (c3tipbottom);
+    }
+}{
+    \ifshowpopsizelabels{
+        \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3int) -- (c3tip) node[midway, text=\popSizeLabelColor] {\small\epopsize[\descendantpopindex{}]{}};
+    }{
+        \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3int) -- (c3tip);
+    }
+}
+
+%% vertical lines
+\ifthirdpair{
+    \draw[line cap=rect, line width=\popLineageDefaultWidth, \popLineageColor] (c3inttop) -- (c3intbottom);
+}{}
+
+
+\ifthirdpair{
+    \ifshowalleles{
+        \node (a2) [right=0mm of c3tipbottom,circle, red,      fill, inner sep = 1.2pt] {};
+        \node (a1) [below=0mm of a2, circle, black!50, fill, inner sep = 1.2pt] {};
+        \node (a3) [above=0mm of a2, circle, red,      fill, inner sep = 1.2pt] {};
+        
+        \node (a5) [right=0mm of c3tiptop,circle, black!50, fill, inner sep = 1.2pt] {};
+        \node (a4) [below=0mm of a5, circle, black!50, fill, inner sep = 1.2pt] {};
+        \node (a6) [above=0mm of a5, circle, red,      fill, inner sep = 1.2pt] {};
+    }{}
+    \ifshowallelelabels{
+        \node [above=-1.5mm of a3, text=\alleleLabelColor] {\tiny ($\allelecount[2], \redallelecount[2]) = (3, 2)$};
+        \node [below=-1.5mm of a4, text=\alleleLabelColor] {\tiny ($\allelecount[1], \redallelecount[1]) = (3, 1)$};
+        
+        \coordinate (abracket1) at (6.5, 0.75);
+        \coordinate (abracket2) at (6.6, 0.75);
+        \coordinate (abracket3) at (6.6, 0.28);
+        \coordinate (abracket4) at (6.5, 0.28);
+        \coordinate (anotation) at (6.6, 0.50);
+        
+        \draw [thick, line cap=rect, \alleleBracketColor] (abracket1) -- (abracket2) -- (abracket3) -- (abracket4);
+        \node [right=0mm of anotation, text=\alleleBracketLabelColor] {$\leafallelecounts, \leafredallelecounts$};
+    }{}
+}{
+    \ifshowalleles{
+        \node (a2) [right=0mm of c3tip, circle, red,      fill, inner sep = 1.2pt] {};
+        \node (a1) [below=0mm of a2, circle, black!50, fill, inner sep = 1.2pt] {};
+        \node (a3) [above=0mm of a2, circle, red,      fill, inner sep = 1.2pt] {};
+    }{}
+    \ifshowallelelabels{
+        \node [below=-1.5mm of a1, text=\alleleLabelColor] {\tiny ($\allelecount[], \redallelecount[]) = (3, 2)$};
+    }{}
+}
+
+%% leaf labels
+\ifshowalleles{
+    \renewcommand{\alleleLeafLabelOffset}{0.5mm}
+}{}
+
+\ifshowleaflabels{
+    \ifthirdpair{
+        \node [right=\alleleLeafLabelOffset of c3tiptop] {\includegraphics[width=14mm]{phylopics/gekko-gecko-\thirdTipTLabelColor-shadow.png}};
+        \node [right=\alleleLeafLabelOffset of c3tipbottom] {\includegraphics[width=14mm]{phylopics/gekko-gecko-\thirdTipBLabelColor-shadow.png}};
+    }{
+        \node [right=\alleleLeafLabelOffset of c3tip] {\includegraphics[width=14mm]{phylopics/gekko-gecko-\thirdTipTLabelColor-shadow.png}};
+    }
+}{}
+
+%% root labels
+\ifshowrootlabels{
+    \node [left=0mm of c3root] {\includegraphics[width=14mm]{phylopics/gekko-gecko-\thirdRootLabelColor-shadow.png}};
+}{}
+
+
+% internal node labels
+\ifshownodelabels{
+    \node [left=0mm of c3int, text=\nodeLabelColor] {$\comparisondivtime{}_{\scriptscriptstyle 3}$};
+}{}
+
+\end{tikzpicture}

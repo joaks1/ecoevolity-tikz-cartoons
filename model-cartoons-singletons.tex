@@ -1,0 +1,64 @@
+\input{singleton-preamble.tex}
+\input{notation.tex}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Generate model cartoons
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Set up formatting
+
+\renewcommand{\ifthirdpair}[2]{#1}
+\renewcommand{\ifshownodelabels}[2]{#2}
+\renewcommand{\ifshowalleles}[2]{#2}
+\renewcommand{\ifshowallelelabels}[2]{#2}
+\renewcommand{\ifshowpopsizelabels}[2]{#2}
+\renewcommand{\ifshowrootlabels}[2]{#1}
+\renewcommand{\ifshowleaflabels}[2]{#1}
+\renewcommand{\nodeLabelColor}{black!70}
+\renewcommand{\popSizeLabelColor}{black!70}
+\renewcommand{\alleleLabelColor}{black!70}
+\renewcommand{\alleleBracketColor}{black!70}
+\renewcommand{\alleleBracketLabelColor}{black!70}
+\renewcommand{\popLineageColor}{black!30}
+\renewcommand{\popLineageDefaultWidth}{16pt}
+\renewcommand{\thirdPopLineageRootWidth}{\popLineageDefaultWidth}
+\renewcommand{\thirdPopLineageLeafWidth}{\popLineageDefaultWidth}
+
+\renewcommand{\thirdRootLabelColor}{1-green}
+
+\renewcommand{\thirdTipTLabelColor}{5-teal}
+\renewcommand{\thirdTipBLabelColor}{6-auburn}
+% \definecolor{pgreen}     {RGB}{50,162,81}
+% \definecolor{porange}    {RGB}{255,127,15}
+% \definecolor{pblue}      {RGB}{60,183,204}
+% \definecolor{pyellow}    {RGB}{255,217,74}
+% \definecolor{pteal}      {RGB}{57,115,124}
+% \definecolor{pauburn}    {RGB}{184,90,13}
+
+% Set up event times 
+\pgfmathsetmacro\shallowdepth{4.5}
+\pgfmathsetmacro\middledepth{3.2}
+\pgfmathsetmacro\deepdepth{1.4}
+\pgfmathsetmacro\stemlength{1.0}
+\pgfmathsetmacro\maximumdepth{\deepdepth}
+
+\pgfmathsetmacro\thirddepth{\middledepth}
+
+\thispagestyle{empty}
+\beginpgfgraphicnamed{model-cartoons/div-model-singleton}
+\input{singleton-template.tex}
+\endpgfgraphicnamed
+
+\renewcommand{\ifthirdpair}[2]{#2}
+\renewcommand{\thirdPopLineageRootWidth}{16pt}
+\renewcommand{\thirdPopLineageLeafWidth}{36pt}
+\renewcommand{\thirdRootLabelColor}{5-teal}
+
+\thispagestyle{empty}
+\beginpgfgraphicnamed{model-cartoons/demog-model-singleton}
+\input{singleton-template.tex}
+\endpgfgraphicnamed
+
+\end{document}
