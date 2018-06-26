@@ -202,4 +202,36 @@ node lower right/.style={font=\small,anchor=north west,text height=0.240cm,text 
     \node [left=0mm of c3int, text=\nodeLabelColor] {$\comparisondivtime{}_{\scriptscriptstyle 3}$};
 }{}
 
+\ifshowmodels{
+    \coordinate (m5) at (7.5,-1.000);
+    \coordinate (m4) at (7.5,0.600);
+    \coordinate (m3) at (7.5,2.200);
+    \coordinate (m2) at (7.5,3.800);
+    \coordinate (m1) at (7.5,5.400);
+    
+    \coordinate (m2bul) at (7.5, 4.6);
+    \coordinate (m2bur) at (9.5, 4.6);
+    \coordinate (m2bbl) at (7.5, 3.0);
+    \coordinate (m2bbr) at (9.5, 3.0);
+    
+    \coordinate (kbracket1) at (9.6, 4.6);
+    \coordinate (kbracket2) at (9.7, 4.6);
+    \coordinate (kbracket3) at (9.7, -0.15);
+    \coordinate (kbracket4) at (9.6, -0.15);
+    
+    \node [right=0mm of m5] {\includegraphics[height=14mm]{\modelthreepath}};
+    \node [right=0mm of m4] {\includegraphics[height=14mm]{\modeltwothreepath}};
+    \node [right=0mm of m3] {\includegraphics[height=14mm]{\modeltwotwopath}};
+    \node [right=0mm of m2] {\includegraphics[height=14mm]{\modeltwoonepath}};
+    \node [right=0mm of m1] {\includegraphics[height=14mm]{\modelonepath}};
+    
+    \draw [pblue, very thick, line cap=rect] (m2bul) -- (m2bur) -- (m2bbr) -- (m2bbl) -- (m2bul);
+    
+    \node [right=21.5mm of m5] {$\nevents = 3$};
+    \node [right=21.5mm of m3] {$\nevents = 2$};
+    \node [right=21.5mm of m1] {$\nevents = 1$};
+    
+    \draw [very thick, line cap=rect] (kbracket1) -- (kbracket2) -- (kbracket3) -- (kbracket4);
+}{}
+
 \end{tikzpicture}
