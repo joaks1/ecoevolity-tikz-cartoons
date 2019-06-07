@@ -234,4 +234,24 @@ node lower right/.style={font=\small,anchor=north west,text height=0.240cm,text 
     \draw [very thick, line cap=rect] (kbracket1) -- (kbracket2) -- (kbracket3) -- (kbracket4);
 }{}
 
+\ifshowcomparisonlabels{
+    \coordinate (divbracket1) at (-1.2, 5.1);
+    \coordinate (divbracket2) at (-1.3, 5.1);
+    \coordinate (divbracketlabel) at (-1.3, 3.5);
+    \coordinate (divbracket3) at (-1.3, 1.9);
+    \coordinate (divbracket4) at (-1.2, 1.9);
+
+    \coordinate (dembracket1) at (-1.2, 1.0);
+    \coordinate (dembracket2) at (-1.3, 1.0);
+    \coordinate (dembracketlabel) at (-1.3, 0.5);
+    \coordinate (dembracket3) at (-1.3, 0.0);
+    \coordinate (dembracket4) at (-1.2, 0.0);
+
+    \node [above=1mm of divbracketlabel, align=center, rotate=90] {\sffamily Divergence\\\sffamily comparisons};
+    \node [above=1mm of dembracketlabel, align=center, rotate=90] {\sffamily Demographic\\\sffamily comparison};
+    
+    \draw [very thick, line cap=rect] (divbracket1) -- (divbracket2) -- (divbracket3) -- (divbracket4);
+    % \draw [very thick, line cap=rect] (dembracket1) -- (dembracket2) -- (dembracket3) -- (dembracket4);
+}{}
+
 \end{tikzpicture}

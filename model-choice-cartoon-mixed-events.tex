@@ -67,4 +67,23 @@
 \input{template.tex}
 \endpgfgraphicnamed
 
+
+\renewcommand{\ifshownodelabels}[2]{#2}
+\renewcommand{\ifshowalleles}[2]{#2}
+\renewcommand{\ifshowallelelabels}[2]{#2}
+\renewcommand{\ifshowpopsizelabels}[2]{#2}
+
+\thispagestyle{empty}
+\beginpgfgraphicnamed{model-cartoons/model-choice-island-cartoon-mixed-simple}
+\input{template.tex}
+\endpgfgraphicnamed
+
+
+\renewcommand{\ifshowcomparisonlabels}[2]{#1}
+
+\thispagestyle{empty}
+\beginpgfgraphicnamed{model-cartoons/model-choice-island-cartoon-mixed-simple-comp-labels}
+\input{template.tex}
+\endpgfgraphicnamed
+
 \end{document}
