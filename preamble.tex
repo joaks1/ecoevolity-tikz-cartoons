@@ -36,6 +36,8 @@
 \newcommand{\ifshowtipisland}[2]{#1}
 \newcommand{\ifshowtimearrow}[2]{#1}
 \newcommand{\ifshowpopsizelabels}[2]{#1}
+\newcommand{\ifshowpopsizelabelstwo}[2]{#2}
+\newcommand{\ifshowpopsizelabelsone}[2]{#2}
 \newcommand{\ifshoweventlines}[2]{#1}
 \newcommand{\ifshowrootlabels}[2]{#1}
 \newcommand{\ifshowleaflabels}[2]{#1}
@@ -101,6 +103,21 @@
 \newcommand{\modeltwotwopath}{model-cartoons/mixed-model-131-lines-small.pdf}
 \newcommand{\modeltwoonepath}{model-cartoons/mixed-model-311-lines-small.pdf}
 \newcommand{\modelonepath}{model-cartoons/mixed-model-111-lines-small.pdf}
+
+\newcommand{\rootSizeLabelCompThree}{\epopsize[\rootpopindex{}]{}}
+\newcommand{\tipTopSizeLabelCompThree}{\small\epopsize[\descendantpopindex{1}]{}}
+\newcommand{\tipBottomSizeLabelCompThree}{\small\epopsize[\descendantpopindex{2}]{}}
+\newcommand{\tipSizeLabelCompThree}{\small\epopsize[\descendantpopindex{}]{}}
+
+\newcommand{\rootSizeLabelCompTwo}{\epopsize[\rootpopindex{}]{$_2$}}
+\newcommand{\tipTopSizeLabelCompTwo}{\small\epopsize[\descendantpopindex{1}]{$_2$}}
+\newcommand{\tipBottomSizeLabelCompTwo}{\small\epopsize[\descendantpopindex{2}]{$_2$}}
+\newcommand{\tipSizeLabelCompTwo}{\small\epopsize[\descendantpopindex{}]{$_2$}}
+
+\newcommand{\rootSizeLabelCompOne}{\epopsize[\rootpopindex{}]{$_1$}}
+\newcommand{\tipTopSizeLabelCompOne}{\small\epopsize[\descendantpopindex{1}]{$_1$}}
+\newcommand{\tipBottomSizeLabelCompOne}{\small\epopsize[\descendantpopindex{2}]{$_1$}}
+\newcommand{\tipSizeLabelCompOne}{\small\epopsize[\descendantpopindex{}]{$_1$}}
 
 \newcommand{\getEventLabel}[1]{%
     \ifthenelse{\equal{#1}{\shallowdepth}}%

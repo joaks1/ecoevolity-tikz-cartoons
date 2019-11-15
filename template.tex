@@ -38,38 +38,64 @@ node lower right/.style={font=\small,anchor=north west,text height=0.240cm,text 
 \coordinate (c3tipbottom) at (5.600,0.000);
 
 %% horizontal lines
-\draw[line width=\firstPopLineageRootWidth, \popLineageColor] (c1root) -- (c1int);
-\iffirstpair{
-    \draw[line width=\firstPopLineageLeafWidth, \popLineageColor] (c1inttop) -- (c1tiptop);
-    \draw[line width=\firstPopLineageLeafWidth, \popLineageColor] (c1intbottom) -- (c1tipbottom);
+\ifshowpopsizelabelsone{
+    \draw[line width=\firstPopLineageRootWidth, \popLineageColor] (c1root) -- (c1int) node[midway, text=\popSizeLabelColor] {\rootSizeLabelCompOne};
 }{
-    \draw[line width=\firstPopLineageLeafWidth, \popLineageColor] (c1int) -- (c1tip);
+    \draw[line width=\firstPopLineageRootWidth, \popLineageColor] (c1root) -- (c1int);
+}
+\iffirstpair{
+    \ifshowpopsizelabelsone{
+        \draw[line width=\firstPopLineageLeafWidth, \popLineageColor] (c1inttop) -- (c1tiptop) node[midway, text=\popSizeLabelColor] {\tipTopSizeLabelCompOne};
+        \draw[line width=\firstPopLineageLeafWidth, \popLineageColor] (c1intbottom) -- (c1tipbottom) node[midway, text=\popSizeLabelColor] {\tipBottomSizeLabelCompOne};
+    }{
+        \draw[line width=\firstPopLineageLeafWidth, \popLineageColor] (c1inttop) -- (c1tiptop);
+        \draw[line width=\firstPopLineageLeafWidth, \popLineageColor] (c1intbottom) -- (c1tipbottom);
+    }
+}{
+    \ifshowpopsizelabelsone{
+        \draw[line width=\firstPopLineageLeafWidth, \popLineageColor] (c1int) -- (c1tip) node[midway, text=\popSizeLabelColor] {\tipSizeLabelCompOne};
+    }{
+        \draw[line width=\firstPopLineageLeafWidth, \popLineageColor] (c1int) -- (c1tip);
+    }
 }
 
-\draw[line width=\secondPopLineageRootWidth, \popLineageColor] (c2root) -- (c2int);
-\ifsecondpair{
-    \draw[line width=\secondPopLineageLeafWidth, \popLineageColor] (c2inttop) -- (c2tiptop);
-    \draw[line width=\secondPopLineageLeafWidth, \popLineageColor] (c2intbottom) -- (c2tipbottom);
+\ifshowpopsizelabelstwo{
+    \draw[line width=\secondPopLineageRootWidth, \popLineageColor] (c2root) -- (c2int) node[midway, text=\popSizeLabelColor] {\rootSizeLabelCompTwo};
 }{
-    \draw[line width=\secondPopLineageLeafWidth, \popLineageColor] (c2int) -- (c2tip);
+    \draw[line width=\secondPopLineageRootWidth, \popLineageColor] (c2root) -- (c2int);
+}
+\ifsecondpair{
+    \ifshowpopsizelabelstwo{
+        \draw[line width=\secondPopLineageLeafWidth, \popLineageColor] (c2inttop) -- (c2tiptop) node[midway, text=\popSizeLabelColor] {\tipTopSizeLabelCompTwo};
+        \draw[line width=\secondPopLineageLeafWidth, \popLineageColor] (c2intbottom) -- (c2tipbottom) node[midway, text=\popSizeLabelColor] {\tipBottomSizeLabelCompTwo};
+    }{
+        \draw[line width=\secondPopLineageLeafWidth, \popLineageColor] (c2inttop) -- (c2tiptop);
+        \draw[line width=\secondPopLineageLeafWidth, \popLineageColor] (c2intbottom) -- (c2tipbottom);
+    }
+}{
+    \ifshowpopsizelabelstwo{
+        \draw[line width=\secondPopLineageLeafWidth, \popLineageColor] (c2int) -- (c2tip) node[midway, text=\popSizeLabelColor] {\tipSizeLabelCompTwo};
+    }{
+        \draw[line width=\secondPopLineageLeafWidth, \popLineageColor] (c2int) -- (c2tip);
+    }
 }
 
 \ifshowpopsizelabels{
-    \draw[line width=\thirdPopLineageRootWidth, \popLineageColor] (c3root) -- (c3int) node[midway, text=\popSizeLabelColor] {\epopsize[\rootpopindex{}]{}};
+    \draw[line width=\thirdPopLineageRootWidth, \popLineageColor] (c3root) -- (c3int) node[midway, text=\popSizeLabelColor] {\rootSizeLabelCompThree};
 }{
     \draw[line width=\thirdPopLineageRootWidth, \popLineageColor] (c3root) -- (c3int);
 }
 \ifthirdpair{
     \ifshowpopsizelabels{
-        \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3inttop) -- (c3tiptop) node[midway, text=\popSizeLabelColor] {\small\epopsize[\descendantpopindex{1}]{}};
-        \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3intbottom) -- (c3tipbottom) node[midway, text=\popSizeLabelColor] {\small\epopsize[\descendantpopindex{2}]{}};
+        \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3inttop) -- (c3tiptop) node[midway, text=\popSizeLabelColor] {\tipTopSizeLabelCompThree};
+    \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3intbottom) -- (c3tipbottom) node[midway, text=\popSizeLabelColor] {\tipBottomSizeLabelCompThree};
     }{
         \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3inttop) -- (c3tiptop);
         \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3intbottom) -- (c3tipbottom);
     }
 }{
     \ifshowpopsizelabels{
-        \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3int) -- (c3tip) node[midway, text=\popSizeLabelColor] {\small\epopsize[\descendantpopindex{}]{}};
+        \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3int) -- (c3tip) node[midway, text=\popSizeLabelColor] {\tipSizeLabelCompThree};
     }{
         \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3int) -- (c3tip);
     }
