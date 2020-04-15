@@ -60,6 +60,14 @@
 \input{template.tex}
 \endpgfgraphicnamed
 
+\pgfmathsetmacro\firstdepth{\middledepth}
+\thispagestyle{empty}
+\beginpgfgraphicnamed{model-cartoons/div-island-cartoon-shared-full}
+\input{template.tex}
+\endpgfgraphicnamed
+\pgfmathsetmacro\firstdepth{\shallowdepth}
+
+
 \renewcommand{\ifshowalleles}[2]{#2}
 \renewcommand{\ifshowallelelabels}[2]{#2}
 
@@ -68,12 +76,28 @@
 \input{template.tex}
 \endpgfgraphicnamed
 
+\pgfmathsetmacro\firstdepth{\middledepth}
+\thispagestyle{empty}
+\beginpgfgraphicnamed{model-cartoons/div-island-cartoon-shared-no-alleles}
+\input{template.tex}
+\endpgfgraphicnamed
+\pgfmathsetmacro\firstdepth{\shallowdepth}
+
+
 \renewcommand{\ifshowpopsizelabels}[2]{#2}
 
 \thispagestyle{empty}
 \beginpgfgraphicnamed{model-cartoons/div-island-cartoon-no-pop-size-labels}
 \input{template.tex}
 \endpgfgraphicnamed
+
+\pgfmathsetmacro\firstdepth{\middledepth}
+\thispagestyle{empty}
+\beginpgfgraphicnamed{model-cartoons/div-island-cartoon-shared-no-pop-size-labels}
+\input{template.tex}
+\endpgfgraphicnamed
+\pgfmathsetmacro\firstdepth{\shallowdepth}
+
 
 \renewcommand{\ifshownodelabels}[2]{#2}
 
@@ -82,12 +106,27 @@
 \input{template.tex}
 \endpgfgraphicnamed
 
+\pgfmathsetmacro\firstdepth{\middledepth}
+\thispagestyle{empty}
+\beginpgfgraphicnamed{model-cartoons/div-island-cartoon-shared-event-labels}
+\input{template.tex}
+\endpgfgraphicnamed
+\pgfmathsetmacro\firstdepth{\shallowdepth}
+
+
 \renewcommand{\ifshoweventlabels}[2]{#2}
 
 \thispagestyle{empty}
 \beginpgfgraphicnamed{model-cartoons/div-island-cartoon-lines}
 \input{template.tex}
 \endpgfgraphicnamed
+
+\pgfmathsetmacro\firstdepth{\middledepth}
+\thispagestyle{empty}
+\beginpgfgraphicnamed{model-cartoons/div-island-cartoon-shared-lines}
+\input{template.tex}
+\endpgfgraphicnamed
+\pgfmathsetmacro\firstdepth{\shallowdepth}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
