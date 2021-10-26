@@ -12,7 +12,7 @@
 \renewcommand{\ifthirdpair}[2]{#1}
 \renewcommand{\ifshownodelabels}[2]{#2}
 \renewcommand{\ifshowalleles}[2]{#1}
-\renewcommand{\ifshowallelelabels}[2]{#2}
+\renewcommand{\ifshowallelelabels}[2]{#1}
 \renewcommand{\ifshowpopsizelabels}[2]{#2}
 \renewcommand{\ifshowrootlabels}[2]{#2}
 \renewcommand{\ifshowleaflabels}[2]{#2}
@@ -51,6 +51,13 @@
 \pgfmathsetmacro\coalthree{(5.6-(3.0*\coalsep)}
 \pgfmathsetmacro\coalfour{(5.6-(8.0*\coalsep)}
 \pgfmathsetmacro\coalfive{(\thirddepth-(6.0*\coalsep)}
+
+\thispagestyle{empty}
+\beginpgfgraphicnamed{model-cartoons/sp-tree-gene-tree-allele-labels}
+\input{gene-tree-template.tex}
+\endpgfgraphicnamed
+
+\renewcommand{\ifshowallelelabels}[2]{#2}
 
 \thispagestyle{empty}
 \beginpgfgraphicnamed{model-cartoons/sp-tree-gene-tree}
