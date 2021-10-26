@@ -1,0 +1,82 @@
+\documentclass[11pt,a4paper]{scrartcl}
+% \documentclass[border=0pt]{standalone}
+\pagestyle{empty}
+\usepackage{tikz}
+\usetikzlibrary{calc,math,positioning,arrows}
+\usepackage{sfmath}
+\usepackage{ifthen}
+\usepackage{xspace}
+\usepackage{xcolor}
+\pgfrealjobname{master}
+\usepackage[width=9.2cm, height=8.7cm,noheadfoot]{geometry}
+
+%% Set up color palettes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Color palette GreenOrange_6 from
+% https://jiffyclub.github.io/palettable/tableau/
+\definecolor{pgreen}     {RGB}{50,162,81}
+\definecolor{porange}    {RGB}{255,127,15}
+\definecolor{pblue}      {RGB}{60,183,204}
+\definecolor{pyellow}    {RGB}{255,217,74}
+\definecolor{pteal}      {RGB}{57,115,124}
+\definecolor{pauburn}    {RGB}{184,90,13}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\ifthirdpair}[2]{#1}
+
+\newcommand{\ifshownodelabels}[2]{#1}
+\newcommand{\ifshowalleles}[2]{#1}
+\newcommand{\ifshowallelelabels}[2]{#1}
+\newcommand{\ifshowpopsizelabels}[2]{#1}
+\newcommand{\ifshowrootlabels}[2]{#1}
+\newcommand{\ifshowleaflabels}[2]{#1}
+
+\newcommand{\ifshowgenetree}[2]{#1}
+
+\newcommand{\leafLabelOffset}{0mm}
+\newcommand{\alleleLeafLabelOffset}{0mm}
+
+% 1.6 deep
+% 5.6 shallow
+% 3.6 middle
+\pgfmathsetmacro\shallowdepth{4.5}
+\pgfmathsetmacro\middledepth{2.2}
+\pgfmathsetmacro\deepdepth{1.4}
+\pgfmathsetmacro\thirddepth{\shallowdepth}
+\pgfmathsetmacro\stemlength{1.0}
+\pgfmathsetmacro\maximumdepth{\deepdepth}
+
+\pgfmathsetmacro\topallelesep{0.2}
+\pgfmathsetmacro\bottomallelesep{0.2}
+
+\pgfmathsetmacro\coalsep{0.3}
+\pgfmathsetmacro\coalone{(5.6-\coalsep}
+\pgfmathsetmacro\coaltwo{(5.6-(2.0*\coalsep)}
+\pgfmathsetmacro\coalthree{(5.6-(5.0*\coalsep)}
+\pgfmathsetmacro\coalfour{(5.6-(8.0*\coalsep)}
+\pgfmathsetmacro\coalfive{(\maximumdepth-\stemlength)+(2*\coalsep)}
+
+\newcommand{\nodeLabelColor}{black!70}
+\newcommand{\popSizeLabelColor}{black!70}
+\newcommand{\alleleLabelColor}{black!70}
+\newcommand{\alleleBracketColor}{black!70}
+\newcommand{\alleleBracketLabelColor}{black!70}
+
+\newcommand{\redallelecolor}{red}
+\newcommand{\greenallelecolor}{black!70}
+\newcommand{\redbranchcolor}{red}
+\newcommand{\greenbranchcolor}{black!70}
+
+\newcommand{\popLineageColor}{black!30}
+\newcommand{\popLineageDefaultWidth}{16pt}
+\newcommand{\geneLineageWidth}{1pt}
+
+\newcommand{\thirdPopLineageRootWidth}{\popLineageDefaultWidth}
+\newcommand{\thirdPopLineageLeafWidth}{\popLineageDefaultWidth}
+\newcommand{\thirdPopLineageLeafWidthBottom}{\popLineageDefaultWidth}
+\newcommand{\thirdPopLineageVertWidth}{\popLineageDefaultWidth}
+
+\newcommand{\thirdRootLabelColor}{5-teal}
+
+\newcommand{\thirdTipTLabelColor}{5-teal}
+\newcommand{\thirdTipBLabelColor}{6-auburn}
