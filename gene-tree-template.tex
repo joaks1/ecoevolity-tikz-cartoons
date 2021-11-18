@@ -67,14 +67,26 @@ node lower right/.style={font=\small,anchor=north west,text height=0.240cm,text 
 
 %% horizontal lines
 \ifshowpopsizelabels{
-    \draw[line width=\thirdPopLineageRootWidth, \popLineageColor] (c3root) -- (c3intmerge) node[midway, text=\popSizeLabelColor] {\epopsize[\rootpopindex{}]{}};
+    \ifshowgenetree{
+        \draw[line width=\thirdPopLineageRootWidth, \popLineageColor] (c3root) -- (c3intmerge);
+        \node [left = 1mm of c3intmerge, text=\popSizeLabelColor, align=center, font=\small] {\epopsize[\rootpopindex{}]};
+    }{
+        \draw[line width=\thirdPopLineageRootWidth, \popLineageColor] (c3root) -- (c3intmerge) node[midway, text=\popSizeLabelColor] {\epopsize[\rootpopindex{}]{}};
+    }
 }{
     \draw[line width=\thirdPopLineageRootWidth, \popLineageColor] (c3root) -- (c3intmerge);
 }
 \ifthirdpair{
     \ifshowpopsizelabels{
-        \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3inttop) -- (c3tiptop) node[midway, text=\popSizeLabelColor] {\small\epopsize[\descendantpopindex{1}]{}};
-        \draw[line width=\thirdPopLineageLeafWidthBottom, \popLineageColor] (c3intbottom) -- (c3tipbottom) node[midway, text=\popSizeLabelColor] {\small\epopsize[\descendantpopindex{2}]{}};
+        \ifshowgenetree{
+            \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3inttop) -- (c3tiptop);
+            \draw[line width=\thirdPopLineageLeafWidthBottom, \popLineageColor] (c3intbottom) -- (c3tipbottom);
+            \node [above right = -1.7mm and -0.6mm of c3inttop, text=\popSizeLabelColor] {\tiny\epopsize[\descendantpopindex{1}]{}};
+            \node [below right = -0.7mm and -0.6mm of c3intbottom, text=\popSizeLabelColor] {\tiny\epopsize[\descendantpopindex{2}]{}};
+        }{
+            \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3inttop) -- (c3tiptop) node[midway, text=\popSizeLabelColor] {\small\epopsize[\descendantpopindex{1}]{}};
+            \draw[line width=\thirdPopLineageLeafWidthBottom, \popLineageColor] (c3intbottom) -- (c3tipbottom) node[midway, text=\popSizeLabelColor] {\small\epopsize[\descendantpopindex{2}]{}};
+        }
     }{
         \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3inttop) -- (c3tiptop);
         \draw[line width=\thirdPopLineageLeafWidthBottom, \popLineageColor] (c3intbottom) -- (c3tipbottom);
@@ -96,13 +108,20 @@ node lower right/.style={font=\small,anchor=north west,text height=0.240cm,text 
 
 \ifthirdpair{
     \ifshowalleles{
-        \node (a1) [right=0mm of c3allele1, circle, \greenallelecolor, fill, inner sep = 1.2pt] {};
-        \node (a2) [right=0mm of c3allele2, circle, \greenallelecolor, fill, inner sep = 1.2pt] {};
-        \node (a3) [right=0mm of c3allele3, circle, \redallelecolor,      fill, inner sep = 1.2pt] {};
+        % \node (a1) [right=0mm of c3allele1, circle, \greenallelecolor, fill, inner sep = 1.2pt] {};
+        % \node (a2) [right=0mm of c3allele2, circle, \greenallelecolor, fill, inner sep = 1.2pt] {};
+        % \node (a3) [right=0mm of c3allele3, circle, \redallelecolor,      fill, inner sep = 1.2pt] {};
 
-        \node (a4) [right=0mm of c3allele4, circle, \redallelecolor, fill, inner sep = 1.2pt] {};
-        \node (a5) [right=0mm of c3allele5, circle, \redallelecolor,      fill, inner sep = 1.2pt] {};
-        \node (a6) [right=0mm of c3allele6, circle, \greenallelecolor,      fill, inner sep = 1.2pt] {};
+        % \node (a4) [right=0mm of c3allele4, circle, \redallelecolor, fill, inner sep = 1.2pt] {};
+        % \node (a5) [right=0mm of c3allele5, circle, \redallelecolor,      fill, inner sep = 1.2pt] {};
+        % \node (a6) [right=0mm of c3allele6, circle, \greenallelecolor,      fill, inner sep = 1.2pt] {};
+
+        \node (a1) [right=-1mm of c3allele1, text=\greenallelecolor] {\tiny\sffamily\textbf{A}};
+        \node (a2) [right=-1mm of c3allele2, text=\greenallelecolor] {\tiny\sffamily\textbf{A}};
+        \node (a3) [right=-1mm of c3allele3, text=\redallelecolor]   {\tiny\sffamily\textbf{G}};
+        \node (a4) [right=-1mm of c3allele4, text=\redallelecolor]   {\tiny\sffamily\textbf{G}};
+        \node (a5) [right=-1mm of c3allele5, text=\redallelecolor]   {\tiny\sffamily\textbf{G}};
+        \node (a6) [right=-1mm of c3allele6, text=\greenallelecolor] {\tiny\sffamily\textbf{A}};
     }{}
     \ifshowallelelabels{
         \node [right=0mm of a2, text=\alleleLabelColor] {\tiny ($\allelecount[B], \redallelecount[B]) = (3, 1)$};
@@ -145,9 +164,9 @@ node lower right/.style={font=\small,anchor=north west,text height=0.240cm,text 
 
         \ifshowinternalallelelabels{
             % \node [below=0mm of c3inttop, text=\alleleLabelColor] {\tiny ($\allelecount[T], \redallelecount[T]) = (1, 0)$};
-            \node [above right = -1.3mm and -1mm of c3inttop, text=\internalAlleleLabelColor] {\tiny ($\allelecount[T], \redallelecount[T]) = (1, 0)$};
-            \node [below right = 0.3mm and -1mm of c3intbottom, text=\internalAlleleLabelColor] {\tiny ($\allelecount[T], \redallelecount[T]) = (1, 0)$};
-            \node [left = -1mm of c3intmerge, text=\internalAlleleLabelColor, align=center, font=\tiny\linespread{0.6}] {($\allelecount[B], \redallelecount[B])$ \\ $= (2, 0)$};
+            \node [above right = -1.3mm and -1mm of c3inttop, text=\internalAlleleLabelColor] {\tiny $(\allelecount[T], \redallelecount[T]) = (1, 0)$};
+            \node [below right = 0.3mm and -1mm of c3intbottom, text=\internalAlleleLabelColor] {\tiny $(\allelecount[T], \redallelecount[T]) = (1, 0)$};
+            \node [left = -1mm of c3intmerge, text=\internalAlleleLabelColor, align=center, font=\tiny\linespread{0.6}] {$(\allelecount[B], \redallelecount[B])$ \\ $= (2, 0)$};
 
         }{}
     }{}
@@ -161,6 +180,12 @@ node lower right/.style={font=\small,anchor=north west,text height=0.240cm,text 
         \node [below=-1.5mm of a1, text=\alleleLabelColor] {\tiny ($\allelecount[], \redallelecount[]) = (3, 2)$};
     }{}
 }
+
+%% events
+\ifshoweventlines{
+    \draw [\eventLineColor, dashed, line width=\eventLineWidth] (\thirddepth,-0.600) -- (\thirddepth,1.500);
+    \ifshoweventlabels{\node [text=\eventLabelColor,font=\Large,yshift=0.100cm,text height=0.415cm,text depth=0.118cm] at (\thirddepth,1.500) {$\tau$};}{}
+}{}
 
 %% leaf labels
 \ifshowalleles{

@@ -80,6 +80,19 @@
 \input{gene-tree-template.tex}
 \endpgfgraphicnamed
 
+\renewcommand{\ifshoweventlabels}[2]{#1}
+\renewcommand{\ifshoweventlines}[2]{#1}
+\renewcommand{\ifshowpopsizelabels}[2]{#1}
+
+\thispagestyle{empty}
+\beginpgfgraphicnamed{model-cartoons/sp-tree-gene-tree-event}
+\input{gene-tree-template.tex}
+\endpgfgraphicnamed
+
+\renewcommand{\ifshoweventlabels}[2]{#2}
+\renewcommand{\ifshoweventlines}[2]{#2}
+\renewcommand{\ifshowpopsizelabels}[2]{#2}
+
 \renewcommand{\redbranchcolor}{black!70}
 
 \thispagestyle{empty}
