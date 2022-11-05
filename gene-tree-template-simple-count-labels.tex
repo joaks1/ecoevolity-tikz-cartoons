@@ -1,0 +1,215 @@
+%% This is a tikz file
+
+\tikzset{node lower left/.style={font=\small,anchor=north east,text height=0.240cm,text depth=0.068cm,inner sep=0.03cm},
+leaf/.style={font=\small,anchor=west,text height=0.240cm,text depth=0.068cm},
+node upper left/.style={font=\small,anchor=south east,text height=0.240cm,text depth=0.068cm,inner sep=0.03cm},
+bracket label/.style={font=\small,anchor=west,text height=0.240cm,text depth=0.068cm,inner sep=0.1cm},
+node upper right/.style={font=\small,anchor=south west,text height=0.240cm,text depth=0.068cm,inner sep=0.03cm},
+node right/.style={font=\small,anchor=west,text height=0.240cm,text depth=0.068cm,inner sep=0.03cm},
+branch/.style={font=\tiny,text height=0.144cm,text depth=0.041cm,inner sep=0.025cm},
+root/.style={font=\small,anchor=east,text height=0.240cm,text depth=0.068cm},
+node lower right/.style={font=\small,anchor=north west,text height=0.240cm,text depth=0.068cm,inner sep=0.03cm}}
+
+\begin{tikzpicture}[ultra thick,inner sep=0.1cm]
+
+%% Coordinates of nodes.
+\coordinate (c3root) at (\maximumdepth-\stemlength,0.500);
+\coordinate (c3int) at (\thirddepth,0.500);
+\coordinate (c3intmerge) at (\thirddepth+0.01,0.500);
+\coordinate (c3inttop) at (\thirddepth,1.000);
+\coordinate (c3intbottom) at (\thirddepth,0.000);
+\coordinate (c3tip) at (5.600,0.500);
+\coordinate (c3tiptop) at (5.600,1.000);
+\coordinate (c3tipbottom) at (5.600,0.000);
+
+\coordinate (c3allele2) at (5.600,1.000);
+\coordinate (c3allele1) at (5.600,1.0+\topallelesep);
+\coordinate (c3allele3) at (5.600,1.0-\topallelesep);
+\coordinate (c3allele5) at (5.600,0.000);
+\coordinate (c3allele4) at (5.600,0.0+\bottomallelesep);
+\coordinate (c3allele6) at (5.600,0.0-\bottomallelesep);
+
+\pgfmathsetmacro\yab{1.0+(\topallelesep/2.0)}
+% \pgfmathsetmacro\yabc{1.0-(\topallelesep/4.0)}
+\pgfmathsetmacro\yabc{1.0-(\topallelesep/2.0)}
+\pgfmathsetmacro\yef{0.0-(\bottomallelesep/2.0)}
+% \pgfmathsetmacro\ydef{1.0+(\bottomallelesep/4.0)}
+\pgfmathsetmacro\ydef{0.0+(\bottomallelesep/2.0)}
+
+\pgfmathsetmacro\mutc{5.6-((5.6-\coalthree)/2.0)}
+\pgfmathsetmacro\mutf{5.6-((5.6-\coaltwo)/2.0)}
+
+\coordinate (c3a2top) at (\coalone,1.0);
+\coordinate (c3a1top) at (\coalone,1.0+\topallelesep);
+\coordinate (c3a3top) at (\coalthree,1.0-\topallelesep);
+\coordinate (c3a3mut) at (\mutc,1.0-\topallelesep);
+
+\coordinate (c3a12) at (\coalone,\yab);
+\coordinate (c3a12top) at (\coalthree,\yab);
+
+\coordinate (c3a123) at (\coalthree,\yabc);
+\coordinate (c3a123top) at (\coalfive,\yabc);
+
+\coordinate (c3a5top) at (\coaltwo,0.0);
+\coordinate (c3a6top) at (\coaltwo,0.0-\bottomallelesep);
+\coordinate (c3a6mut) at (\mutf,0.0-\bottomallelesep);
+\coordinate (c3a4top) at (\coalfour,0.0+\bottomallelesep);
+
+\coordinate (c3a56) at (\coaltwo,\yef);
+\coordinate (c3a56top) at (\coalfour,\yef);
+
+\coordinate (c3a456) at (\coalfour,\ydef);
+\coordinate (c3a456top) at (\coalfive,\ydef);
+\coordinate (c3a456mut) at (\coalfour-\coalsep,\ydef);
+
+\coordinate (c3a123456) at (\coalfive,0.5);
+\coordinate (c3a123456top) at (\maximumdepth-\stemlength,0.500);
+
+%% horizontal lines
+\ifshowpopsizelabels{
+    \ifshowgenetree{
+        \draw[line width=\thirdPopLineageRootWidth, \popLineageColor] (c3root) -- (c3intmerge);
+        \node [left = 1mm of c3intmerge, text=\popSizeLabelColor, align=center, font=\small] {\epopsize[\rootpopindex{}]};
+    }{
+        \draw[line width=\thirdPopLineageRootWidth, \popLineageColor] (c3root) -- (c3intmerge) node[midway, text=\popSizeLabelColor] {\epopsize[\rootpopindex{}]{}};
+    }
+}{
+    \draw[line width=\thirdPopLineageRootWidth, \popLineageColor] (c3root) -- (c3intmerge);
+}
+\ifthirdpair{
+    \ifshowpopsizelabels{
+        \ifshowgenetree{
+            \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3inttop) -- (c3tiptop);
+            \draw[line width=\thirdPopLineageLeafWidthBottom, \popLineageColor] (c3intbottom) -- (c3tipbottom);
+            \node [above right = -1.7mm and -0.6mm of c3inttop, text=\popSizeLabelColor] {\tiny\epopsize[\descendantpopindex{1}]{}};
+            \node [below right = -0.7mm and -0.6mm of c3intbottom, text=\popSizeLabelColor] {\tiny\epopsize[\descendantpopindex{2}]{}};
+        }{
+            \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3inttop) -- (c3tiptop) node[midway, text=\popSizeLabelColor] {\small\epopsize[\descendantpopindex{1}]{}};
+            \draw[line width=\thirdPopLineageLeafWidthBottom, \popLineageColor] (c3intbottom) -- (c3tipbottom) node[midway, text=\popSizeLabelColor] {\small\epopsize[\descendantpopindex{2}]{}};
+        }
+    }{
+        \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3inttop) -- (c3tiptop);
+        \draw[line width=\thirdPopLineageLeafWidthBottom, \popLineageColor] (c3intbottom) -- (c3tipbottom);
+    }
+}{
+    \ifshowpopsizelabels{
+        \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3int) -- (c3tip) node[midway, text=\popSizeLabelColor] {\small\epopsize[\descendantpopindex{}]{}};
+    }{
+        \draw[line width=\thirdPopLineageLeafWidth, \popLineageColor] (c3int) -- (c3tip);
+    }
+}
+
+%% vertical lines
+\ifthirdpair{
+    % \draw[line cap=rect, line width=\thirdPopLineageVertWidth, \popLineageColor] (c3inttop) -- (c3intbottom);
+    % \draw[line width=\popLineageDefaultWidth, \popLineageColor] (c3inttop) -- (c3intbottom);
+}{}
+
+
+\ifthirdpair{
+    \ifshowalleles{
+        % \node (a1) [right=0mm of c3allele1, circle, \greenallelecolor, fill, inner sep = 1.2pt] {};
+        % \node (a2) [right=0mm of c3allele2, circle, \greenallelecolor, fill, inner sep = 1.2pt] {};
+        % \node (a3) [right=0mm of c3allele3, circle, \redallelecolor,      fill, inner sep = 1.2pt] {};
+
+        % \node (a4) [right=0mm of c3allele4, circle, \redallelecolor, fill, inner sep = 1.2pt] {};
+        % \node (a5) [right=0mm of c3allele5, circle, \redallelecolor,      fill, inner sep = 1.2pt] {};
+        % \node (a6) [right=0mm of c3allele6, circle, \greenallelecolor,      fill, inner sep = 1.2pt] {};
+
+        \node (a1) [right=-1mm of c3allele1, text=\greenallelecolor] {\tiny\sffamily\textbf{A}};
+        \node (a2) [right=-1mm of c3allele2, text=\greenallelecolor] {\tiny\sffamily\textbf{A}};
+        \node (a3) [right=-1mm of c3allele3, text=\redallelecolor]   {\tiny\sffamily\textbf{G}};
+        \node (a4) [right=-1mm of c3allele4, text=\redallelecolor]   {\tiny\sffamily\textbf{G}};
+        \node (a5) [right=-1mm of c3allele5, text=\redallelecolor]   {\tiny\sffamily\textbf{G}};
+        \node (a6) [right=-1mm of c3allele6, text=\greenallelecolor] {\tiny\sffamily\textbf{A}};
+    }{}
+    \ifshowallelelabels{
+        \node [right=0mm of a2, text=\alleleLabelColor] {\tiny ($\allelecount, \redallelecount) = (3, 1)$};
+        \node [right=0mm of a5, text=\alleleLabelColor] {\tiny ($\allelecount, \redallelecount) = (3, 2)$};
+        % \node [below=-1.5mm of a3, text=\alleleLabelColor] {\tiny ($\allelecount[1], \redallelecount[1]) = (3, 1)$};
+        % \node [above=-1.5mm of a4, text=\alleleLabelColor] {\tiny ($\allelecount[2], \redallelecount[2]) = (3, 2)$};
+        
+        % \coordinate (abracket1) at (6.5, 0.75);
+        % \coordinate (abracket2) at (6.6, 0.75);
+        % \coordinate (abracket3) at (6.6, 0.28);
+        % \coordinate (abracket4) at (6.5, 0.28);
+        % \coordinate (anotation) at (6.6, 0.50);
+        
+        % \draw [thick, line cap=rect, \alleleBracketColor] (abracket1) -- (abracket2) -- (abracket3) -- (abracket4);
+        % \node [right=0mm of anotation, text=\alleleBracketLabelColor] {$\leafallelecounts, \leafredallelecounts$};
+    }{}
+    \ifshowgenetree{
+        \draw[line width=\geneLineageWidth, \greenbranchcolor] (c3allele1) -- (c3a1top);
+        \draw[line width=\geneLineageWidth, \greenbranchcolor] (c3allele2) -- (c3a2top);
+        \draw[line width=\geneLineageWidth, \redbranchcolor] (c3allele3) -- (c3a3mut);
+        \draw[line width=\geneLineageWidth, \greenbranchcolor] (c3a3mut) -- (c3a3top);
+        \draw[line width=\geneLineageWidth, \greenbranchcolor] (c3a12) -- (c3a12top);
+        \draw[line width=\geneLineageWidth, \greenbranchcolor] (c3a123) -- (c3a123top);
+
+        \draw[line width=\geneLineageWidth, \greenbranchcolor] (c3allele6) -- (c3a6mut);
+        \draw[line width=\geneLineageWidth, \redbranchcolor] (c3a6mut) -- (c3a6top);
+        \draw[line width=\geneLineageWidth, \redbranchcolor] (c3allele5) -- (c3a5top);
+        \draw[line width=\geneLineageWidth, \redbranchcolor] (c3allele4) -- (c3a4top);
+        \draw[line width=\geneLineageWidth, \redbranchcolor] (c3a56) -- (c3a56top);
+        \draw[line width=\geneLineageWidth, \redbranchcolor] (c3a456) -- (c3a456mut);
+        \draw[line width=\geneLineageWidth, \greenbranchcolor] (c3a456mut) -- (c3a456top);
+        \draw[line width=\geneLineageWidth, \greenbranchcolor] (c3a123456) -- (c3a123456top);
+
+        \draw[line cap=rect, line width=\geneLineageWidth, \greenbranchcolor] (c3a1top) -- (c3a2top);
+        \draw[line cap=rect, line width=\geneLineageWidth, \greenbranchcolor] (c3a12top) -- (c3a3top);
+        \draw[line cap=rect, line width=\geneLineageWidth, \greenbranchcolor] (c3a123top) -- (c3a456top);
+
+        \draw[line cap=rect, line width=\geneLineageWidth, \redbranchcolor] (c3a5top) -- (c3a6top);
+        \draw[line cap=rect, line width=\geneLineageWidth, \redbranchcolor] (c3a4top) -- (c3a56top);
+
+        \ifshowinternalallelelabels{
+            % \node [below=0mm of c3inttop, text=\alleleLabelColor] {\tiny ($\allelecount, \redallelecount) = (1, 0)$};
+            \node [above right = -1.3mm and -1mm of c3inttop, text=\internalAlleleLabelColor] {\tiny $(\allelecount, \redallelecount) = (1, 0)$};
+            \node [below right = 0.3mm and -1mm of c3intbottom, text=\internalAlleleLabelColor] {\tiny $(\allelecount, \redallelecount) = (1, 0)$};
+            \node [left = -1mm of c3intmerge, text=\internalAlleleLabelColor, align=center, font=\tiny\linespread{0.6}] {$(\allelecount, \redallelecount)$ \\ $= (2, 0)$};
+
+        }{}
+    }{}
+}{
+    \ifshowalleles{
+        \node (a2) [right=0mm of c3tip, circle, \redallelecolor,      fill, inner sep = 1.2pt] {};
+        \node (a1) [below=0mm of a2, circle, \greenallelecolor, fill, inner sep = 1.2pt] {};
+        \node (a3) [above=0mm of a2, circle, \redallelecolor,      fill, inner sep = 1.2pt] {};
+    }{}
+    \ifshowallelelabels{
+        \node [below=-1.5mm of a1, text=\alleleLabelColor] {\tiny ($\allelecount[], \redallelecount[]) = (3, 2)$};
+    }{}
+}
+
+%% events
+\ifshoweventlines{
+    \draw [\eventLineColor, dashed, line width=\eventLineWidth] (\thirddepth,-0.600) -- (\thirddepth,1.500);
+    \ifshoweventlabels{\node [text=\eventLabelColor,font=\Large,yshift=0.100cm,text height=0.415cm,text depth=0.118cm] at (\thirddepth,1.500) {$\tau$};}{}
+}{}
+
+%% leaf labels
+\ifshowalleles{
+    \renewcommand{\alleleLeafLabelOffset}{0.5mm}
+}{}
+
+\ifshowleaflabels{
+    \ifthirdpair{
+        \node [right=\alleleLeafLabelOffset of c3tiptop] {\includegraphics[width=14mm]{phylopics/gekko-gecko-\thirdTipTLabelColor-shadow.png}};
+        \node [right=\alleleLeafLabelOffset of c3tipbottom] {\includegraphics[width=14mm]{phylopics/gekko-gecko-\thirdTipBLabelColor-shadow.png}};
+    }{
+        \node [right=\alleleLeafLabelOffset of c3tip] {\includegraphics[width=14mm]{phylopics/gekko-gecko-\thirdTipTLabelColor-shadow.png}};
+    }
+}{}
+
+%% root labels
+\ifshowrootlabels{
+    \node [left=0mm of c3root] {\includegraphics[width=14mm]{phylopics/gekko-gecko-\thirdRootLabelColor-shadow.png}};
+}{}
+
+
+% internal node labels
+\ifshownodelabels{
+    \node [left=0mm of c3int, text=\nodeLabelColor] {$\comparisondivtime{}_{\scriptscriptstyle 3}$};
+}{}
+
+\end{tikzpicture}
