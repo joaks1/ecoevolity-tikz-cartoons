@@ -35,6 +35,8 @@
 \renewcommand{\thirdTipTLabelColor}{5-teal}
 \renewcommand{\thirdTipBLabelColor}{6-auburn}
 
+\newcommand{\ifVertLine}[2]{#2}
+
 % Set up event times 
 \pgfmathsetmacro\shallowdepth{4.5}
 \pgfmathsetmacro\middledepth{2.8}
@@ -111,6 +113,19 @@
 
 \thispagestyle{empty}
 \beginpgfgraphicnamed{model-cartoons/simple-sp-tree-no-gene-tree-no-alleles}
+\input{gene-tree-template-simple-count-labels.tex}
+\endpgfgraphicnamed
+
+\renewcommand{\ifVertLine}[2]{#1}
+\renewcommand{\popLineageColor}{black}
+\renewcommand{\thirdPopLineageRootWidth}{2pt}
+\renewcommand{\thirdPopLineageLeafWidth}{2pt}
+\renewcommand{\thirdPopLineageLeafWidthBottom}{2pt}
+\renewcommand{\thirdPopLineageVertWidth}{2pt}
+
+
+\thispagestyle{empty}
+\beginpgfgraphicnamed{model-cartoons/simple-sp-tree-skinny}
 \input{gene-tree-template-simple-count-labels.tex}
 \endpgfgraphicnamed
 

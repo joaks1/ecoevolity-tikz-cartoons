@@ -101,8 +101,10 @@ node lower right/.style={font=\small,anchor=north west,text height=0.240cm,text 
 
 %% vertical lines
 \ifthirdpair{
-    % \draw[line cap=rect, line width=\thirdPopLineageVertWidth, \popLineageColor] (c3inttop) -- (c3intbottom);
+    \ifVertLine{
+    \draw[line cap=rect, line width=\thirdPopLineageVertWidth, \popLineageColor] (c3inttop) -- (c3intbottom);
     % \draw[line width=\popLineageDefaultWidth, \popLineageColor] (c3inttop) -- (c3intbottom);
+    }{}
 }{}
 
 
